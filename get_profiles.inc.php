@@ -12,7 +12,13 @@
   // store all the accounts with the query name in profiles
   $profiles = $instagram->searchAccountsByUsername($fetch);
 
+  // store all the profiles
+  $result = '';
+
   // get every account's profile picture and echo it
   foreach($profiles as $profile){
-    echo '<img style="display: none;" src="'. $profile->getProfilePicUrl() .'"/>';
+    $result .= '<img style="display: none;" src="'. $profile->getProfilePicUrl() .'"/>';
   }
+
+  // echo all the profiles as a response
+  echo $result;
