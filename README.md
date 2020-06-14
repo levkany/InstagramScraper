@@ -8,7 +8,7 @@ instagram scraper library integration
   
  # Markup
  Dependencies
- https://ibb.co/Lv4jt82
+ ![alt text](https://ibb.co/Lv4jt82)
  
  Links
- https://ibb.co/SxFg1xw
+ ![alt text](https://ibb.co/SxFg1xw)
