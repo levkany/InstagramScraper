@@ -17,7 +17,7 @@
 
   // get every account's profile picture and echo it
   foreach($profiles as $profile){
-    $result .= '<img style="display: none;" src="'. $profile->getProfilePicUrl() .'"/>';
+    $result .= '<a class="profile" href="#" title="'. $profile->getFullName() .'" data-user="'. $profile->getUsername() .'"><img style="display: none;" src="'. $profile->getProfilePicUrl() .'"/></a>';
   }
 
   // echo all the profiles as a response
