@@ -4,6 +4,12 @@
     <meta charset="utf-8">
     <title>Instagram Scraper Integration</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <!-- Magnific Popup -->
+    <script src="magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+    <link rel="stylesheet" href="magnific-popup/dist/magnific-popup.css"/>
+
+    <!-- Main js -->
     <script src='main.js'></script>
 
     <style media="screen">
@@ -14,7 +20,7 @@
         padding: 16px;
       }
 
-      label[for='query']{
+      label[for='query'], h2{
         display: block;
         color: #003300;
         padding: 16px;
@@ -22,10 +28,25 @@
         font-size: 2em;
       }
 
-      #profiles{
+      h2 {
+        padding-top: 16px;
+      }
+
+      hr{
+        border: 1px solid lightgray;
+        border-radius: 50%;
+        margin-top: -32px;
+      }
+
+      #profiles, #activeProfile{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        margin-top: 30px;
+      }
+
+      section header{
+        width: 100%;
       }
 
       input{
@@ -44,7 +65,10 @@
         flex-basis: 10%;
         margin: 2px;
         border: 1px solid black;
-        border-radius: 5%;
+      }
+
+      #closeProfile{
+        display: none;
       }
     </style>
   </head>
@@ -55,12 +79,10 @@
         <input type="text" id='query' placeholder="Search for username">
       </section>
 
-      <section id='profiles'>
+      <h2>Profiles <span id="closeProfile"><a href="#">Go back</a></span></h2><hr/>
+      <section id='profiles'></section>
 
-      </section>
-
-      <section id='activeProfile'>
-
+      <section id='activeProfile' style="display: none;">
       </section>
     </main>
   </body>
