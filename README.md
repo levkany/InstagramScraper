@@ -7,10 +7,10 @@ instagram scraper library integration
   3. Instagram-Php-Scraper - https://github.com/postaddictme/instagram-php-scraper
   
  # Markup
- Dependencies:
+ Dependencies (main.js):
  
  ![alt text](https://i.ibb.co/LPVyqPd/dependencies.png)
  
- Links:
+ Links (index.php):
  
  ![alt text](https://i.ibb.co/6N69Pmf/links.png)
