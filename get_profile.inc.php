@@ -22,28 +22,22 @@
       $profileID = $profile->getId();
       $profileMedias = $profile->getMedias();
       $mediaMaxDisplay = 10;
-
-      echo '<div class="box">
-              <div class="title"> <h4>'. $profile->getFullName() .'</h4> </div>
-              <div class="content">
-                <div class="bio">Biography '. $profile->getBiography() .'</div>
-                <div class="followers">Followers '. $profile->getFollowedByCount() .'</div>
-                <div class="facebook">Facebook link '. $profile->getConnectedFbPage() .'</div>
-                <div class="medias">Medias '. $profile->getMediaCount() .'</div>
-              </div>
-            </div>
-            ';
-
+      $printResult = '';
+      $totalAVG = 0;
       $counter = 0;
+
       foreach($profileMedias as $media){
         if($counter < $mediaMaxDisplay){
           $counter++;
-          echo  '<div class="media">
+          $likesCount = $media->getLikesCount();
+          $commentsCount = $media->getCommentsCount();
+          $totalAVG += $likesCount + $commentsCount;
+          $printResult .=  '<div class="profile">
                 <a href="'. $media->getImageHighResolutionUrl() .'"><img src="'. $media->getImageHighResolutionUrl() .'"/></a>
                 <p>Title '. $media->getCaption() .'</p>
-                <p>Likes '. $media->getLikesCount() .'</p>
-                <p>Comments '. $media->getCommentsCount() .'</p>
-                <p>Subs AVG - '. (($media->getCommentsCount() + $media->getLikesCount()) / $profile->getFollowedByCount()) .'</p>
+                <p>Likes '. $likesCount .'</p>
+                <p>Comments '. $commentsCount .'</p>
+                <p>Engagement - '. round(((($likesCount + $commentsCount) / $profile->getFollowedByCount()) * 100)) .'%</p>
                 </div>';
         }
 
@@ -52,5 +46,21 @@
           break;
         }
       }
+
+      $totalAVG = ($totalAVG / $counter / $profile->getFollowedByCount()) * 100;
+      $totalAVG = round($totalAVG);
+      echo '<div class="profile">
+              <div class="main">
+                <img src="'. $profile->getProfilePicUrl() .'"/>
+                <div class="title"> <h4>'. $profile->getFullName() .'</h4> </div>
+              </div>
+              <div class="content">
+                <div class="bio">Biography '. $profile->getBiography() .'</div>
+                <div class="followers">Followers '. $profile->getFollowedByCount() .'</div>
+                <div class="facebook">Facebook link '. $profile->getConnectedFbPage() .'</div>
+                <div class="medias">Medias '. $profile->getMediaCount() .'</div>
+                <div class="engagement">Engagement '. $totalAVG .'%</div>
+              </div>
+            </div>', $printResult;
     }
   }
