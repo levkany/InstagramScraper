@@ -19,7 +19,10 @@
   foreach($profiles as $profile){
     $result .= '<div class="profile">
                   <a href="#" title="'. $profile->getFullName() .'" data-user="'. $profile->getUsername() .'">
-                    <img style="display: none;" src="'. $profile->getProfilePicUrl() .'"/>
+                    <div class="content">
+                      <div class="overlay"></div>
+                      <img style="display: none;" src="'. $profile->getProfilePicUrl() .'"/>
+                    </div>
                     <h4>'. $profile->getUsername() .'</h4>
                   </a>
                 </div>';
