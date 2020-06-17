@@ -21,7 +21,7 @@
     else{
       $profileID = $profile->getId();
       $profileMedias = $profile->getMedias();
-      $mediaMaxDisplay = 10;
+      $mediaMaxDisplay = 20;
       $printResult = '';
       $totalAVG = 0;
       $counter = 0;
@@ -32,12 +32,17 @@
           $likesCount = $media->getLikesCount();
           $commentsCount = $media->getCommentsCount();
           $totalAVG += $likesCount + $commentsCount;
-          $printResult .=  '<div class="profile">
-                <a href="'. $media->getImageHighResolutionUrl() .'"><img src="'. $media->getImageHighResolutionUrl() .'"/></a>
-                <p>Title '. $media->getCaption() .'</p>
-                <p>Likes '. $likesCount .'</p>
-                <p>Comments '. $commentsCount .'</p>
-                <p>Engagement - '. round(((($likesCount + $commentsCount) / $profile->getFollowedByCount()) * 100)) .'%</p>
+          $printResult .=  '<div class="profileMedia">
+                <a href="'. $media->getImageHighResolutionUrl() .'">
+                  <div class="overlay">
+                    <div class="content">
+                      <p><i class="fas fa-thumbs-up"></i>'. $likesCount .'</p>
+                      <p><i class="fas fa-comments"></i>'. $commentsCount .'</p>
+                      <p><i class="fas fa-fw fa-chart-area"></i>'. round(((($likesCount + $commentsCount) / $profile->getFollowedByCount()) * 100)) .'%</p>
+                    </div>
+                  </div>
+                  <img src="'. $media->getImageHighResolutionUrl() .'"/>
+                </a>
                 </div>';
         }
 
@@ -49,18 +54,41 @@
 
       $totalAVG = ($totalAVG / $counter / $profile->getFollowedByCount()) * 100;
       $totalAVG = round($totalAVG);
-      echo '<div class="profile">
+      echo '<div id="profileInfo" class="flex-item">
+              <h2>Profile information</h2>
               <div class="main">
                 <img src="'. $profile->getProfilePicUrl() .'"/>
-                <div class="title"> <h4>'. $profile->getFullName() .'</h4> </div>
+                <div class="right">
+                  <div class="title" title="the full name of the user">
+                    <h4>
+                      <b>Fullname</b>
+                      '. $profile->getFullName() .'
+                    </h4>
+                  </div>
+                  <div class="bio" title="Bio: '.$profile->getBiography().'">
+                    <p>
+                      <b>Biography</b> '. $profile->getBiography() .'...
+                    </p>
+                  </div>
+                </div>
               </div>
               <div class="content">
-                <div class="bio">Biography '. $profile->getBiography() .'</div>
-                <div class="followers">Followers '. $profile->getFollowedByCount() .'</div>
-                <div class="facebook">Facebook link '. $profile->getConnectedFbPage() .'</div>
-                <div class="medias">Medias '. $profile->getMediaCount() .'</div>
-                <div class="engagement">Engagement '. $totalAVG .'%</div>
+                <div class="followers" title="number of followers of the user">
+                  <i class="fas fa-fw fa-user-friends"></i>
+                  <p><b>Followers</b> '. $profile->getFollowedByCount() .'</p></div>
+
+                <div class="medias" title="number of photos and videos of the user">
+                  <i class="fas fa-fw fa-images"></i>
+                  <p><b>Medias</b> '. $profile->getMediaCount() .'</p></div>
+
+                <div class="engagement" title="the percentage of the user\'s followers activity">
+                  <i class="fas fa-fw fa-chart-area"></i>
+                  <p><b>Engagement</b> '. $totalAVG .'%</p></div>
               </div>
-            </div>', $printResult;
+            </div>
+          <div id="profileStats" class="flex-item">
+            <h5>Stats placeholder</h5>
+          </div>
+          <div id="profileGallery" class="flex-item">', $printResult, '</div>';
     }
   }

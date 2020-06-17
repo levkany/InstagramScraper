@@ -12,6 +12,9 @@
     <script src="magnific-popup/dist/jquery.magnific-popup.min.js"></script>
     <link rel="stylesheet" href="magnific-popup/dist/magnific-popup.css"/>
 
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300&display=swap" rel="stylesheet">
+
     <!-- Main js -->
     <script src='main.js'></script>
     <link rel="stylesheet" href="style.css">
@@ -19,7 +22,7 @@
   </head>
   <body>
     <main>
-      <section id='search'><hr/>
+      <section id='search'>
         <div class="content-wrapper">
           <label for="query">Instagram Query 1.0</label>
           <input type="text" id='query' placeholder="Search for username">

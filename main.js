@@ -37,7 +37,7 @@ $(document).ready(function() {
         // Same input, expected fetch from scraper
         getProfiles();
       }
-    }, 1000);
+    }, 250);
   }
 
   $('#query').on('keyup', function() {
@@ -46,9 +46,9 @@ $(document).ready(function() {
 
 
   // when we click any profile image, it will send a request to fetch more detailed information about the user.
-  $('#profiles').on('click', 'a.profile', function() {
-    $(this).parent().fadeOut();
-    $(this).parent().parent().find('#activeProfile').fadeIn();
+  $('#profiles').on('click', '.profile a', function() {
+    $(this).parent().parent().fadeOut();
+    $(this).parent().parent().parent().find('#activeProfile').fadeIn();
 
     // request more user details using ajax
     $.ajax({
